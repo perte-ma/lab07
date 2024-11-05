@@ -9,14 +9,20 @@ import it.unibo.inner.api.Predicate;
 public class ImplementIterableWithPolicy<T> implements IterableWithPolicy<T> {
 
     T[] array;
-    
+    Predicate<T> filter;
+
     public ImplementIterableWithPolicy (T[] array ){
-        this.array = array;
+        this.array=array;
+    }
+
+    public ImplementIterableWithPolicy (T[] array, Predicate<T> filter){
+        this.array=array;
+        this.filter=filter;
     }
 
     @Override
-    public void setIterationPolicy(Predicate filter) {
-        
+    public void setIterationPolicy(Predicate<T> filter) {
+        this.filter=filter;
     }
 
     public class InnerIterator implements Iterator<T>{
