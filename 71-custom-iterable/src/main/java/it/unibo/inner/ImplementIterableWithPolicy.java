@@ -1,6 +1,5 @@
 package it.unibo.inner;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 
 import it.unibo.inner.api.IterableWithPolicy;
@@ -12,7 +11,13 @@ public class ImplementIterableWithPolicy<T> implements IterableWithPolicy<T> {
     Predicate<T> filter;
 
     public ImplementIterableWithPolicy (T[] array ){
-        this.array=array;
+        this(array, new Predicate<T>() {
+            @Override
+            public boolean test(T elem) {
+                return true;
+            }
+            
+        });
     }
 
     public ImplementIterableWithPolicy (T[] array, Predicate<T> filter){
